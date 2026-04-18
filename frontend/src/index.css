@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'DM Sans', 'Noto Sans Bengali', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .lang-bn {
+    font-family: 'Noto Sans Bengali', 'DM Sans', sans-serif;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-khet-300 dark:bg-khet-700 rounded-full;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+::selection {
+  background: rgba(21, 128, 61, 0.15);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  @apply ring-2 ring-farm-green/25 border-farm-green dark:ring-farm-light/25 dark:border-farm-light outline-none;
+}
