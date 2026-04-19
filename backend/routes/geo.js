@@ -2,8 +2,7 @@ import { Router } from 'express';
 import { db } from '../config/supabase.js';
 
 const router = Router();
-
-// GET /api/geo/crops — list of distinct crops that have active listings
+const levels = ['division', 'district', 'upazila', 'union'];
 router.get('/crops', async (req, res) => {
   try {
     const { data, error } = await db
