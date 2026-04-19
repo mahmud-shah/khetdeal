@@ -15,7 +15,6 @@ export default function Navbar() {
 
   const isSeller = user?.role === 'farmer' || user?.role === 'trader';
 
-  // Build the navigation links based on auth state + role
   const publicLinks = [
     { to: '/', label: t('nav_home'), icon: Home },
     { to: '/explore', label: t('nav_explore'), icon: Search },
