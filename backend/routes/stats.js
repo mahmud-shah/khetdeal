@@ -72,5 +72,4 @@ router.get('/dashboard', authenticate, async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch stats' });
   }
 });
-
 export default router;
