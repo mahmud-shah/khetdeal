@@ -15,15 +15,12 @@ export function authenticate(req, res, next) {
   }
 }
 
-// Attach user if token present, but don't require it.
-// Used for public endpoints that optionally show user-specific data.
 export function optionalAuth(req, res, next) {
   const header = req.headers.authorization;
   if (header?.startsWith('Bearer ')) {
     try {
       req.user = jwt.verify(header.split(' ')[1], process.env.JWT_SECRET);
     } catch {
-      // Invalid token — continue as guest
     }
   }
   next();
