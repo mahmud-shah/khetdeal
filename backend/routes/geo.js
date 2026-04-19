@@ -18,8 +18,6 @@ router.get('/crops', async (req, res) => {
   }
 });
 
-// GET /api/geo/aggregate?crop=X&level=division|district|upazila|union
-// Returns aggregated data for a specific crop at a specific geographic level
 router.get('/aggregate', async (req, res) => {
   try {
     const { crop, level, division, district, upazila } = req.query;

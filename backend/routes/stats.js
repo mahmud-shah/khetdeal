@@ -4,13 +4,12 @@ import { authenticate } from '../middleware/auth.js';
 
 const router = Router();
 
-// GET /api/stats/dashboard — real stats based on user's actual data
 router.get('/dashboard', authenticate, async (req, res) => {
   try {
     const { id, role } = req.user;
 
     if (role === 'farmer' || role === 'trader') {
-      // Count own listings by status
+
       const { data: listings } = await db
         .from('listings')
         .select('status')
@@ -21,7 +20,6 @@ router.get('/dashboard', authenticate, async (req, res) => {
         if (counts[l.status] !== undefined) counts[l.status]++;
       });
 
-      // Sum earnings from completed orders (as seller)
       const { data: orders } = await db
         .from('orders')
         .select('total_amount')
@@ -40,7 +38,7 @@ router.get('/dashboard', authenticate, async (req, res) => {
     }
 
     if (role === 'buyer') {
-      // Count sent offers by status
+
       const { data: offers } = await db
         .from('offers')
         .select('status')
@@ -51,7 +49,6 @@ router.get('/dashboard', authenticate, async (req, res) => {
         if (counts[o.status] !== undefined) counts[o.status]++;
       });
 
-      // Sum spent from completed orders (as buyer)
       const { data: orders } = await db
         .from('orders')
         .select('total_amount')

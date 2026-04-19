@@ -5,7 +5,6 @@ import { validate, offerSchema } from '../middleware/validate.js';
 
 const router = Router();
 
-// POST /api/offers — buyer/trader sends offer
 router.post('/', authenticate, authorize('buyer', 'trader'), validate(offerSchema), async (req, res) => {
   try {
     const { listing_id, offered_price, quantity, message } = req.validated;
@@ -15,7 +14,6 @@ router.post('/', authenticate, authorize('buyer', 'trader'), validate(offerSchem
     if (listing.status !== 'active') return res.status(400).json({ error: 'Listing is not available for offers' });
     if (listing.owner_id === req.user.id) return res.status(400).json({ error: 'Cannot offer on your own listing' });
 
-    // Enforce 80% floor on urgent listings
     if (listing.is_urgent) {
       const floor = listing.price_per_kg * 0.8;
       if (offered_price < floor) {
@@ -52,7 +50,6 @@ router.post('/', authenticate, authorize('buyer', 'trader'), validate(offerSchem
   }
 });
 
-// GET /api/offers/received — offers on my listings (for farmer/trader)
 router.get('/received', authenticate, authorize('farmer', 'trader'), async (req, res) => {
   try {
     const { data: myListings } = await db.from('listings').select('id').eq('owner_id', req.user.id);
@@ -73,7 +70,6 @@ router.get('/received', authenticate, authorize('farmer', 'trader'), async (req,
   }
 });
 
-// GET /api/offers/sent — my sent offers (for buyer)
 router.get('/sent', authenticate, async (req, res) => {
   try {
     const { data, error } = await db
@@ -89,7 +85,6 @@ router.get('/sent', authenticate, async (req, res) => {
   }
 });
 
-// PATCH /api/offers/:id — accept or reject (seller only)
 router.patch('/:id', authenticate, authorize('farmer', 'trader'), async (req, res) => {
   try {
     const { status } = req.body;
@@ -117,7 +112,7 @@ router.patch('/:id', authenticate, authorize('farmer', 'trader'), async (req, re
     if (error) throw error;
 
     if (status === 'accepted') {
-      // Mark listing reserved, reject other pending offers, create order
+
       await db.from('listings').update({ status: 'sold' }).eq('id', offer.listing_id);
 
       await db

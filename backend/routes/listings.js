@@ -5,7 +5,6 @@ import { validate, listingCreateSchema, listingUpdateSchema } from '../middlewar
 
 const router = Router();
 
-// GET /api/listings — public browse with filters (all roles + guests)
 router.get('/', async (req, res) => {
   try {
     const { crop, division, district, upazila, union, urgent, source, sort, owner, page = 1, limit = 20 } = req.query;
@@ -14,7 +13,6 @@ router.get('/', async (req, res) => {
       .from('listings')
       .select('*, users!owner_id(id, name, phone, avatar_url, quality_score, completion_rate, is_verified)');
 
-    // By default only show active listings, unless owner filter is set (then show all for that owner)
     if (owner) {
       query = query.eq('owner_id', owner);
     } else {
@@ -46,7 +44,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET /api/listings/mine — current user's own listings (all statuses)
 router.get('/mine', authenticate, async (req, res) => {
   try {
     const { data, error } = await db
@@ -62,7 +59,6 @@ router.get('/mine', authenticate, async (req, res) => {
   }
 });
 
-// GET /api/listings/:id — single listing detail
 router.get('/:id', async (req, res) => {
   try {
     const { data, error } = await db
@@ -78,7 +74,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// POST /api/listings — create new listing (farmer or trader only)
 router.post('/', authenticate, authorize('farmer', 'trader'), validate(listingCreateSchema), async (req, res) => {
   try {
     const listing = {
@@ -102,7 +97,6 @@ router.post('/', authenticate, authorize('farmer', 'trader'), validate(listingCr
   }
 });
 
-// PUT /api/listings/:id — update listing (owner only)
 router.put('/:id', authenticate, authorize('farmer', 'trader'), validate(listingUpdateSchema), async (req, res) => {
   try {
     const { data: existing } = await db.from('listings').select('owner_id').eq('id', req.params.id).single();
@@ -124,7 +118,6 @@ router.put('/:id', authenticate, authorize('farmer', 'trader'), validate(listing
   }
 });
 
-// DELETE /api/listings/:id — delete listing (owner only)
 router.delete('/:id', authenticate, authorize('farmer', 'trader'), async (req, res) => {
   try {
     const { data: existing } = await db.from('listings').select('owner_id').eq('id', req.params.id).single();
@@ -140,7 +133,6 @@ router.delete('/:id', authenticate, authorize('farmer', 'trader'), async (req, r
   }
 });
 
-// PATCH /api/listings/:id/status — change status (state machine)
 router.patch('/:id/status', authenticate, async (req, res) => {
   try {
     const { status } = req.body;

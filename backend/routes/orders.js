@@ -4,7 +4,6 @@ import { authenticate } from '../middleware/auth.js';
 
 const router = Router();
 
-// GET /api/orders — returns all completed orders where user is either seller or buyer
 router.get('/', authenticate, async (req, res) => {
   try {
     const { id } = req.user;
@@ -27,7 +26,6 @@ router.get('/', authenticate, async (req, res) => {
   }
 });
 
-// GET /api/orders/:id — single order detail
 router.get('/:id', authenticate, async (req, res) => {
   try {
     const { data, error } = await db

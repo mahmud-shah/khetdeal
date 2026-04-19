@@ -5,7 +5,6 @@ import { validate, profileSchema } from '../middleware/validate.js';
 
 const router = Router();
 
-// GET /api/profiles/:id — view public profile of any user
 router.get('/:id', async (req, res) => {
   try {
     const { data: user, error } = await db
@@ -21,7 +20,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// PUT /api/profiles/me — update your own profile
 router.put('/me', authenticate, validate(profileSchema), async (req, res) => {
   try {
     const { data: user, error } = await db
