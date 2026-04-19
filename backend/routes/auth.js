@@ -20,7 +20,7 @@ function publicUser(user) {
   return safe;
 }
 
-// Surfaces missing env vars early so users get a clear message
+
 function checkConfig() {
   const missing = [];
   if (!process.env.SUPABASE_URL) missing.push('SUPABASE_URL');
