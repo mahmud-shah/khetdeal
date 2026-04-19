@@ -1,5 +1,3 @@
-// Static UI lookup for crop emojis and Bangla labels.
-// These are NOT listings — just display helpers.
 export const CROP_EMOJI = {
   Potato: '🥔',
   Rice: '🌾',

@@ -62,7 +62,7 @@ export default function ListingFormModal({ listing, onClose, onSaved }) {
     setBusy(true);
 
     try {
-      // Build payload with numeric conversions
+      
       const payload = {
         ...form,
         quantity_min: Number(form.quantity_min),
