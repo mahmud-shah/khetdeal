@@ -13,6 +13,7 @@ import notificationRoutes from './routes/notifications.js';
 import orderRoutes from './routes/orders.js';
 import statsRoutes from './routes/stats.js';
 import geoRoutes from './routes/geo.js';
+import passwordRoutes from './routes/password.js';
 
 dotenv.config();
 
@@ -46,7 +47,7 @@ app.use('/api/notifications', notificationRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/stats', statsRoutes);
 app.use('/api/geo', geoRoutes);
-
+app.use('/api/password', passwordRoutes);
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
