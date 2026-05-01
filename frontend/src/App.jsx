@@ -42,6 +42,8 @@ export default function App() {
           <Route path="/orders" element={user ? <Orders /> : <Navigate to="/login" replace />} />
 
           {/* Public info pages (footer links) */}
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/help" element={<Help />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />
