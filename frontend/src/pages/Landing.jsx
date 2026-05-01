@@ -1,3 +1,4 @@
+import Hero from '../components/home/Hero';
 import { Link } from 'react-router-dom';
 import { Wheat, Search, CheckCircle, Shield, Layers, TrendingUp, Zap, Users, Building, Map, ArrowRight, Leaf } from 'lucide-react';
 import { useLang } from '../contexts/LangContext';
