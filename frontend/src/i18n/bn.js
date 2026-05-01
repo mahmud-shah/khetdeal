@@ -1,5 +1,5 @@
 export default {
-  brand: 'খেতডিল',
+  brand: 'ক্ষেতডিল',
   tagline: 'ফসল কাটার আগেই বাজার',
 
   hero_title: 'ফসল কাটার আগেই বিক্রি করুন',
