@@ -25,6 +25,11 @@ export const api = {
     login: (body) => request('/auth/login', { method: 'POST', body: JSON.stringify(body) }),
     me: () => request('/auth/me'),
   },
+  password: {
+    forgot:    (body)        => request('/password/forgot',     { method: 'POST', body: JSON.stringify(body) }),
+    verifyOtp: (body)        => request('/password/verify-otp', { method: 'POST', body: JSON.stringify(body) }),
+    reset:     (body)        => request('/password/reset',      { method: 'POST', body: JSON.stringify(body) }),
+  },
   profiles: {
     get: (id) => request(`/profiles/${id}`),
     updateMe: (body) => request('/profiles/me', { method: 'PUT', body: JSON.stringify(body) }),
