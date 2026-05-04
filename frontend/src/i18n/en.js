@@ -2,11 +2,18 @@ export default {
   brand: 'KhetDeal',
   tagline: 'Pre-Harvest Farm-Gate Marketplace',
 
+  tagline: 'Bangladesh\'s pre-harvest farm-gate marketplace', // EN
+hero_title: 'Sell standing crops directly to wholesale buyers',
+hero_sub: 'List crops growing in your field. Buyers send offers. Negotiate directly.',
+hero_cta: 'Get started',
+hero_explore: 'Explore listings',
+
+
   // Landing
-  hero_title: 'Sell Your Crops Before You Harvest',
-  hero_sub: "Bangladesh's first platform where farmers list standing crops, buyers browse by location, and deals happen directly — fewer middlemen, more transparency.",
-  hero_cta: 'Get Started',
-  hero_explore: 'Explore Crops',
+  // hero_title: 'Sell Your Crops Before You Harvest',
+  // hero_sub: "Bangladesh's first platform where farmers list standing crops, buyers browse by location, and deals happen directly — fewer middlemen, more transparency.",
+  // hero_cta: 'Get Started',
+  // hero_explore: 'Explore Crops',
   how_title: 'How KhetDeal Works',
   how_1t: 'List Your Standing Crop',
   how_1d: 'Enter crop name, quantity range, minimum price, photos, and location down to village level.',
